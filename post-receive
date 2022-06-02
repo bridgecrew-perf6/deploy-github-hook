@@ -1,7 +1,32 @@
-#! /bin/sh
+#!/bin/bash
+TARGET="https://github.com/sbansal-cnn/deploy-github-hook"
+GIT_DIR="https://github.com/sbansal-cnn/deploy-github-hook.git"
 
-#checkout files
+# Colors
+red='\033[0;31m'
+green='\033[0;32m'
+yellow='\033[0;33m'
+no_color='\033[0m'
 
-git --work-tree = https://github.com/sbansal-cnn/deploy-github-hook/blob/cac7909b0b9aea228b297118c1cad55da2fb9128/test --https://github.com/sbansal-cnn/deploy-github-hook/blob/cac7909b0b9aea228b297118c1cad55da2fb9128/test checkout
-
-
+while read oldrev newrev ref
+do
+	# Get branch name
+        BRANCH=$(echo "$ref" | cut -d/ -f3)
+        # checking out the branch you pushed to deploy)
+        echo -e "\n${green}Ref $ref received. Deploying ${BRANCH} branch to production...${no_color}\n"
+        if git --work-tree=$TARGET --git-dir=$GIT_DIR checkout -f "$BRANCH"; then
+                # Go to work-tree
+                echo -e "\n${green}Running npm install${no_color}\n"
+                cd "${TARGET}/backend" && npm install
+                # Restart pm2
+        	echo -e "\n${green}Restarting pm2${no_color}\n"
+                pm2 restart all
+            echo -e "\n${green}-------------------${no_color}\n"
+            echo -e "\n${green} Latest code is deployed ${no_color}\n"
+            echo -e "\n${green}-------------------${no_color}\n"
+        else
+                echo -e "\n${red}Some error occured. Exiting${no_color}"
+                exit 1
+        fi
+done
+exit 0
