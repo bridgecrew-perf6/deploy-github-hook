@@ -1,0 +1,6 @@
+#! /bin/sh
+
+#checkout files
+
+git --work-tree = /home/sbansal-cnn/deploy-github-hook --git-dir=/home/sbansal-cnn/deploy-github-hook.git checkout
+
