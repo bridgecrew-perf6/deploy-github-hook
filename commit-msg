@@ -1,5 +1,5 @@
 #!/bin/bash
-git --work-tree = /home/sbansal-cnn/deploy-github-hook --git-dir=/home/sbansal-cnn/deploy-github-hook.git checkout
+git --work-tree = https://github.com/sbansal-cnn/deploy-github-hook/blob/cac7909b0b9aea228b297118c1cad55da2fb9128/test --https://github.com/sbansal-cnn/deploy-github-hook/blob/cac7909b0b9aea228b297118c1cad55da2fb9128/test checkout
 
 Color_Off='\033[0m'
 BRed="\033[1;31m"         # Red
