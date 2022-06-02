@@ -2,5 +2,6 @@
 
 #checkout files
 
-git --work-tree = /home/sbansal-cnn/deploy-github-hook --git-dir=/home/sbansal-cnn/deploy-github-hook.git checkout
+git --work-tree = /home/sbansal-cnn/deploy-github-hook --https://github.com/sbansal-cnn/deploy-github-hook/blob/cac7909b0b9aea228b297118c1cad55da2fb9128/test checkout
 
+https://github.com/sbansal-cnn/deploy-github-hook/blob/cac7909b0b9aea228b297118c1cad55da2fb9128/test
